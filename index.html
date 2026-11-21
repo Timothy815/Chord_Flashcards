@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111413">
+<meta name="description" content="Fretboard flash cards for learning CAGED major chord shapes, roots, and voicings.">
+<title>Fretboard Recall</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="frame top-inner"><div class="brand"><span class="brand-icon" aria-hidden="true">♬</span> Fretboard Recall</div><span class="tuning">STANDARD TUNING <span>E A D G B E</span></span></div></header>
+<main class="frame">
+  <div class="intro">
+    <div><h1>CAGED Flash Cards</h1><p>Read the fretboard. Name the chord.</p></div>
+    <div class="stats" aria-label="Session totals"><div><strong id="known">0 / 0</strong><span id="score-label">Correct</span></div><div><strong id="review-count">0</strong><span>To review</span></div></div>
+  </div>
+  <div class="layout">
+    <section class="practice" aria-labelledby="prompt">
+      <div class="card-top"><span id="progress" aria-live="polite"></span><button id="hint" class="small-button" type="button" aria-pressed="false">Show root dots</button></div>
+      <div class="card-body">
+        <h2 id="prompt">Identify this chord</h2>
+        <p id="instructions"></p>
+        <div id="diagram"></div>
+        <div id="quiz" class="quiz" hidden>
+          <p id="quiz-question" tabindex="-1" aria-live="polite"></p>
+          <div id="choices" class="choices"></div>
+          <form id="typed-form" hidden>
+            <input id="typed-answer" aria-labelledby="quiz-question" aria-describedby="answer-format" maxlength="100" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+            <button class="primary" type="submit">Check answer</button>
+          </form>
+          <p id="answer-format" hidden></p>
+          <ol id="response-list" aria-label="Your answers" hidden></ol>
+        </div>
+        <p id="feedback" role="status"></p>
+        <div id="answer" hidden aria-live="polite"></div>
+        <div class="controls" id="controls">
+          <button id="reveal" class="primary" type="button">Reveal answer <kbd>Space</kbd></button>
+          <button id="skip" class="secondary" type="button">Skip</button>
+          <button id="next-card" class="primary" type="button" hidden>Next card</button>
+          <button id="again" class="secondary" type="button" hidden>Review later</button>
+          <button id="correct" class="primary" type="button" hidden>Got it</button>
+        </div>
+        <div class="controls" id="summary-actions" hidden><button id="retry" class="primary" type="button">Practice missed cards</button><button id="restart" class="secondary" type="button">New round</button></div>
+      </div>
+    </section>
+    <aside class="filters" aria-labelledby="filters-title">
+      <div class="filter-head"><h2 id="filters-title">Practice filters</h2><button type="button" class="text-button" id="reset">Reset</button></div>
+      <div class="filter-body">
+        <fieldset><legend>CAGED shape</legend><div id="shape-filters" class="options shapes"></div></fieldset>
+        <fieldset><legend>Chord root</legend><div id="root-filters" class="options roots"></div></fieldset>
+        <fieldset><legend>Voicing</legend><div id="voicing-filters" class="options voicings"></div></fieldset>
+        <label class="field">Answer mode<select id="mode"><option value="choice">Multiple choice</option><option value="typed">Type answers</option><option value="flip">Flip cards and self-score</option></select></label>
+        <label class="field">Question focus<select id="focus"><option value="all">Root, shape, voicing &amp; notes</option><option value="root">Chord root</option><option value="shape">CAGED shape</option><option value="voicing">Voicing &amp; inversion</option><option value="notes">Notes from low to high</option></select></label>
+        <label class="field">Accidentals<select id="spelling"><option value="sharp">Prefer sharps</option><option value="flat">Prefer flats</option></select></label>
+        <div class="apply"><p id="matches" aria-live="polite"></p><button class="primary" id="start" type="button">Start practice</button></div>
+      </div>
+      <div class="saved">
+        <h3>Saved practice sets</h3>
+        <form id="save-form"><input id="preset-name" aria-label="Practice set name" maxlength="40" placeholder="Name this set" required><button class="secondary" type="submit">Save</button></form>
+        <ul id="presets"></ul><p id="save-status" aria-live="polite"></p>
+      </div>
+    </aside>
+  </div>
+  <footer>Diagrams run from low E on the left to high E on the right. <span>○ open string</span> <span>× muted string</span></footer>
+</main>
+</body>
+</html>
